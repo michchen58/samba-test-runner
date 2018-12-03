@@ -1,44 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Samba Test Runner
+We've decided to start doing TDD and now we need to run lots and lots of tests. Some of them might even pass - probably about half!
 
-## Available Scripts
+Here's the function to generate tests:
 
-In the project directory, you can run:
+function generateTest(baseDelay = 5000) {
+  return function runTest() {
+    const delay = baseDelay + (Math.random() * baseDelay);
+    const testPassed = Math.random() > 0.5;
 
-### `npm start`
+    return new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve(testPassed);
+      }, delay);
+    });
+  };
+}
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Now we need a way to visualize our test results. Build a small React app that takes an array of tests - possibly like the below, but feel free to design your own data structure:
+[
+  { description: 'This sentence is true',               run: generateTest() },
+  { description: 'The preceding sentence is false',     run: generateTest() },
+  { description: 'Achilles never catches the tortoise', run: generateTest() }
+  ...etc
+];
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Feature Requirements:
+- Display these tests in a sensible tabular structure of some sort.
+- Provide a `Run` button that initiates a run of the entire test suite.
+- For each test, display information about that test including its name/description, current status (in progress, failed, succeeded, not run), and a button that reruns just that test
+- Report the counts of total tests run and passed, and the percentage that passed
+- All of the above should be pleasing to the eye
 
-### `npm test`
+## Extra credit requirements:
+Before attempting any of these make sure your code is in order. It should be clean, DRY, and maintainable, and demonstrate a knowledge of and concern for best practices in both React and JavaScript generally. If you're really confident and up for another challenge, here are some extra credit ideas:
+- Display the last run time for each test
+- Implement your own test generator which accepts a real test function and returns a promise that resolves to a boolean to indicate success or failure
+- If you are familiar with `rxjs`, which we use heavily in our applications, use observables to manage the asynchronous bits
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### FAQ:
+### How long do I have?
+You will have been provided with a due date when you received this file, but you can work on the project for as many hours as you want in between. That said, a good implementation can be achieved in 2-3 hours, not counting build tooling setup.
 
-### `npm run build`
+### What technology should I use?
+The only requirement here is that you use React. As long as you include instructions for building and running the project you can use whatever tooling and libraries you see fit to use. Also feel free to use `create-react-app` to get started if that's your jam.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As mentioned above, we use `rxjs` rather heavily, so if you are proficient with it, take a shot at that extra credit requirement. This app shouldn't call for particularly heavy data wrangling, but `ramda.js` is also an important element in our stack and will be viewed favorably if used. Keep in mind that both of these come with steep learning curves, so if you're not already familiar with them, don't sweat it and just write the app with what you know.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### How should I deliver this thing?
+Either zip it (don't include node_modules) or create a private repo on GitHub and share it with us.
+takehome.md
+Displaying takehome.md.
