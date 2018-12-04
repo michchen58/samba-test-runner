@@ -1,12 +1,13 @@
-function generateTest(baseDelay = 100) {
+function generateTest(baseDelay = 1000) {
   return function runTest() {
     const delay = baseDelay + (Math.random() * baseDelay);
     const testPassed = Math.random() > 0.5;
 
     return new Promise(function(resolve) {
+      console.log('running')
       setTimeout(function() {
         resolve(testPassed);
-        alert(testPassed);
+        console.log('passed')
       }, delay);
     });
   };

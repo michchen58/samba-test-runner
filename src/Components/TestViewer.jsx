@@ -1,16 +1,8 @@
+import TestViewerRow from './TestViewerRow.jsx';
+
 const React = require('react');
 
-// TABLE SHOULD DISPLAY THE FOLLOWING:
-// name/description
-// current status (in progress, failed, succeeded, not run)
-// a button that reruns just that test
-
-// description: 'This sentence is true',
-// run: generateTest()
-
-const TestViewer = props => {
-  // console.log(props.testData);
-  return (
+const TestViewer = props => (
   <table id="TestViewer">
     <thead>
       <td>Name</td>
@@ -19,16 +11,9 @@ const TestViewer = props => {
       <td>Run test</td>
     </thead>
     <tbody>
-      {props.testData.map(testObject => (
-        <tr>
-          <td>{'[name]'}</td>
-          <td>{testObject.description}</td>
-          <td></td>
-          <td><button onClick={() => testObject.run()}>run test</button></td>
-        </tr>
-      ))}
+      {props.testData.map((testInfo, i) => <TestViewerRow data={testInfo} index={i} runTestCb={props.runTestCb} />)}
     </tbody>
   </table>
-);}
+);
 
 export default TestViewer;
