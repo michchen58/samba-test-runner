@@ -8,10 +8,11 @@ const TestViewer = props => (
       <td>Name</td>
       <td>Description</td>
       <td>Current Status</td>
-      <td>Run test</td>
+      <td>Last run time</td>
+      <td>Re-run test</td>
     </thead>
     <tbody>
-      {props.testData.map((testInfo, i) => <TestViewerRow data={testInfo} index={i} runTestCb={props.runTestCb} />)}
+      {props.testData.map((testInfo, i) => <TestViewerRow data={testInfo} index={i} runSingleTest={props.runSingleTest} />)}
     </tbody>
   </table>
 );

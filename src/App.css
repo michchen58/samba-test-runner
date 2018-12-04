@@ -16,3 +16,28 @@ table#TestViewer > thead {
 table#TestViewer td {
   padding: 5px 10px;
 }
+
+table#TestViewer tr.status_inprogress > td.status {
+  color: #DDDDDD;
+}
+
+table#TestViewer tr.status_succeeded > td.status {
+  color: green;
+}
+
+table#TestViewer tr.status_failed > td.status {
+    color:red;
+}
+
+#TestSuiteResults {
+  background-color: #eee;
+  margin: 1em auto;
+  width: 280px;
+  padding: 1em;
+}
+
+#TestSuiteResults .label {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 1em;
+}
